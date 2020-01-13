@@ -1,0 +1,11 @@
+s = tf('s');
+g11 = (5*s + 0.025)/(s^2 + 0.1*s + 0.002);
+g12 = (1e-2)/(s^2 + 0.1*s +0.002);
+G_ = [[g11 g12];[g12 g11]];
+G = evalfr(G_,0.396);
+RGA = G.*pinv(G.');
+G0 = evalfr(G_,0);
+W1 = inv(G0);
+W2 = eye(2);
+Gtilde = W2*G_*W1;
+Gtilde0 = evalfr(Gtilde,0);
